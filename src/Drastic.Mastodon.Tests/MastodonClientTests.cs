@@ -46,13 +46,13 @@ namespace InitTest
             throw new Exception(authCode);
         }
 
-        private string Email1 => string.Empty;
+        private string Email1 => "[EMAIL1]";
 
-        private string Password1 => string.Empty;
+        private string Password1 => "[PASSWORD1]";
 
-        private string Email2 => string.Empty;
+        private string Email2 => "[EMAIL2]";
 
-        private string Password2 => string.Empty;
+        private string Password2 => "[PASSWORD2]";
     }
 }
 
@@ -65,13 +65,13 @@ namespace Drastic.Mastodon.Tests
         // ####################
         private static AppRegistration app = new AppRegistration
         {
-            Instance = string.Empty,
-            ClientId = string.Empty,
-            ClientSecret = string.Empty,
+            Instance = "[INSTANCETOKEN]",
+            ClientId = "[CLIENTID]",
+            ClientSecret = "[CLIENTSECRET]",
         };
 
-        private static string testAccessToken = string.Empty;
-        private static string privateAccessToken = string.Empty;
+        private static string testAccessToken = "[TESTACCESSTOKEN]";
+        private static string privateAccessToken = "[PRIVATEACCESSTOKEN]";
 
         // ####################
         // ####################
