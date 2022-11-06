@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="SearchTests.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +16,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task SearchAccounts()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var found = await client.SearchAccounts("glacasa");
             Assert.True(found.Any());
@@ -21,7 +25,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task Search()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
             var found = await client.Search("search", false);
 
             Assert.True(found.Hashtags.Any());

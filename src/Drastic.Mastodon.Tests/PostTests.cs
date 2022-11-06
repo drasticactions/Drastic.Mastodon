@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="PostTests.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +16,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task UploadMedia()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             System.IO.FileStream fs = new System.IO.FileStream(
                                                 @".\testimage.png",
@@ -36,10 +40,10 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task PostStatus()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
             var status = await client.PostStatus("Yo1", Visibility.Public);
 
-            var client2 = GetPrivateClient();
+            var client2 = this.GetPrivateClient();
 
             var statusFromApi = await client2.GetStatus(status.Id);
 
@@ -51,7 +55,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task DeleteStatus()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
             var status = await client.PostStatus("Yo1", Visibility.Public);
             var statusId = status.Id;
 
@@ -69,17 +73,16 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task ReblogUnreblog()
         {
-            var testClient = GetTestClient();
+            var testClient = this.GetTestClient();
             var status = await testClient.PostStatus("Yo1", Visibility.Public);
 
-            var client = GetPrivateClient();
+            var client = this.GetPrivateClient();
             status = await client.GetStatus(status.Id);
             Assert.False(status.Reblogged);
 
             await client.Reblog(status.Id);
             status = await client.GetStatus(status.Id);
             Assert.True(status.Reblogged);
-
 
             await client.Unreblog(status.Id);
             status = await client.GetStatus(status.Id);

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="StatusTests.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +16,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetAccountStatuses()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var status = await client.GetAccountStatuses(1);
             Assert.NotNull(status);
@@ -28,7 +32,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetStatus()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var status = await client.PostStatus("Yo", Visibility.Private);
 
@@ -42,7 +46,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetStatusContext()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var status = await client.PostStatus("Yo", Visibility.Private);
             var status2 = await client.PostStatus("Yo 2", Visibility.Private, replyStatusId: status.Id);
@@ -55,7 +59,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetStatusCard()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var status = await client.PostStatus("Yo", Visibility.Private);
 
@@ -65,8 +69,8 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetRebloggedBy()
         {
-            var testClient = GetTestClient();
-            var privateClient = GetPrivateClient();
+            var testClient = this.GetTestClient();
+            var privateClient = this.GetPrivateClient();
 
             var status = await testClient.PostStatus("Yo", Visibility.Public);
             await privateClient.Reblog(status.Id);
@@ -78,8 +82,8 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetFavouritedBy()
         {
-            var testClient = GetTestClient();
-            var privateClient = GetPrivateClient();
+            var testClient = this.GetTestClient();
+            var privateClient = this.GetPrivateClient();
 
             var status = await testClient.PostStatus("Yo", Visibility.Public);
             await privateClient.Favourite(status.Id);

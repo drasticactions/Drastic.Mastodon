@@ -200,6 +200,11 @@ namespace Drastic.Mastodon
             return this.GetStreaming(StreamingType.PublicLocal, null);
         }
 
+        public TimelineStreaming GetUserStreaming()
+        {
+            return this.GetStreaming(StreamingType.User, null);
+        }
+
 #if NETSTANDARD2_0
         private Lazy<Task<Instance>> instanceGetter;
 #endif
@@ -211,11 +216,6 @@ namespace Drastic.Mastodon
 #else
             return new TimelineHttpStreaming(streamingType, param, this.Instance, this.AuthToken?.AccessToken, this.client);
 #endif
-        }
-
-        public TimelineStreaming GetUserStreaming()
-        {
-            return this.GetStreaming(StreamingType.User, null);
         }
 
         public TimelineStreaming GetHashtagStreaming(string hashtag)

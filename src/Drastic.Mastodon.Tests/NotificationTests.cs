@@ -1,6 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿// <copyright file="NotificationTests.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -12,8 +16,8 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetNotifications()
         {
-            var testClient = GetTestClient();
-            var privClient = GetPrivateClient();
+            var testClient = this.GetTestClient();
+            var privClient = this.GetPrivateClient();
 
             // Have 1 notif
             await testClient.ClearNotifications();
@@ -27,8 +31,8 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetNotification()
         {
-            var testClient = GetTestClient();
-            var privClient = GetPrivateClient();
+            var testClient = this.GetTestClient();
+            var privClient = this.GetPrivateClient();
 
             // Have 1 notif
             await testClient.ClearNotifications();
@@ -46,8 +50,8 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task ClearNotifications()
         {
-            var testClient = GetTestClient();
-            var privClient = GetPrivateClient();
+            var testClient = this.GetTestClient();
+            var privClient = this.GetPrivateClient();
 
             // Have notifs
             await privClient.PostStatus("@TestAccount hello", Visibility.Direct);

@@ -83,6 +83,13 @@ namespace Drastic.Mastodon
             }
         }
 
+        protected async Task<T> Get<T>(string route, IEnumerable<KeyValuePair<string, string>>? data = null)
+            where T : class
+        {
+            var content = await this.Get(route, data);
+            return this.TryDeserialize<T>(content);
+        }
+
         private void CheckInstance(string instance)
         {
             var notSupportedList = new List<string> { "gab.", "truthsocial." };
@@ -99,13 +106,6 @@ namespace Drastic.Mastodon
             {
                 request.Headers.Add("Authorization", "Bearer " + this.AuthToken.AccessToken);
             }
-        }
-
-        protected async Task<T> Get<T>(string route, IEnumerable<KeyValuePair<string, string>>? data = null)
-            where T : class
-        {
-            var content = await this.Get(route, data);
-            return this.TryDeserialize<T>(content);
         }
 
         protected async Task<MastodonList<T>> GetMastodonList<T>(string route, IEnumerable<KeyValuePair<string, string>>? data = null)

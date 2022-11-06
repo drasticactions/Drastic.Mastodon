@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="AccountTests.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -13,19 +17,19 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetAccount()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var account = await client.GetAccount(1);
 
             Assert.NotNull(account.ProfileUrl);
             Assert.NotNull(account.UserName);
-            Assert.Equal("glacasa",account.UserName);
+            Assert.Equal("glacasa", account.UserName);
         }
 
         [Fact]
         public async Task GetCurrentUser()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var account = await client.GetCurrentUser();
 
@@ -37,7 +41,7 @@ namespace Drastic.Mastodon.Tests
         [Fact]
         public async Task GetAccountRelationships()
         {
-            var client = GetTestClient();
+            var client = this.GetTestClient();
 
             var relationships = await client.GetAccountRelationships(1);
 
@@ -45,19 +49,19 @@ namespace Drastic.Mastodon.Tests
             Assert.Single(relationships);
         }
 
-
         [Fact]
         public async Task UpdateAccount()
         {
-            var avatarBase64 = await DownloadBase64("http://tweeting.com/wp-content/uploads/2011/11/Doctor-Who-logo.jpg");
+            var avatarBase64 = await this.DownloadBase64("http://tweeting.com/wp-content/uploads/2011/11/Doctor-Who-logo.jpg");
             Assert.Equal(15920, avatarBase64.Length);
-            var headerBase64 = await DownloadBase64("http://www.geekbomb.net/wp-content/uploads/2017/07/The-police-Box-TARDIS-from-Doctor-Who-in-space.jpg");
+            var headerBase64 = await this.DownloadBase64("http://www.geekbomb.net/wp-content/uploads/2017/07/The-police-Box-TARDIS-from-Doctor-Who-in-space.jpg");
             Assert.Equal(336848, headerBase64.Length);
 
-            var client = GetTestClient();
-            //var result = await client.UpdateCredentials("Just the Doctor", "Trust me", "data:image/jpg;base64," + avatarBase64, "data:image/jpg;base64," + headerBase64);
+            var client = this.GetTestClient();
 
-            //Assert.NotNull(result);
+            // var result = await client.UpdateCredentials("Just the Doctor", "Trust me", "data:image/jpg;base64," + avatarBase64, "data:image/jpg;base64," + headerBase64);
+
+            // Assert.NotNull(result);
         }
 
         private async Task<string> DownloadBase64(string url)
